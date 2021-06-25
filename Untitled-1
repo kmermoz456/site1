@@ -1,0 +1,9 @@
+postgres://lilqnmdgsmmync:
+
+pass=56fe6a8ede016fae2bc81a67afd02624e52d6e9ec60bf19c652dadb69b64a3b0
+
+username = lilqnmdgsmmync
+
+host = @ec2-54-225-228-142.compute-1.amazonaws.com
+port =5432
+dbname = dbe79j6hd8rqqk
