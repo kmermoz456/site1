@@ -33,3 +33,4 @@ class CreatePropositionsTable extends Migration
         Schema::dropIfExists('propositions');
     }
 }
+
