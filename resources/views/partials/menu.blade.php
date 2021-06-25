@@ -18,10 +18,25 @@
           <a class="nav-link active" href="{{route('sujet',['nivau' => 'sn2'])}}">SN licence 2</a>
         </li>
       </ul>
+      @guest
         <div class="d-flex px-2 mb-1">
       <a href="/register" class=" mx-1 btn btn-outline-success">Créer un compte</a>
       <a href="/login" class=" mx-1 btn btn-success">Se connecter</a>
       </div>
+      @endguest
+      @auth
+      <div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    Konan kouame mermoz
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+      @endauth
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Recherche</button>
