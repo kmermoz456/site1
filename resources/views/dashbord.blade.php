@@ -154,7 +154,7 @@
     <input class="form-control form-control-dark w-100" type="text" value=" <?=Auth::user()->name?>">
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
-        <a class="nav-link" href="#">Sign out</a>
+        <a class="nav-link" href="/logout">Deconnexion</a>
       </li>
     </ul>
   </header>
@@ -173,76 +173,26 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{isset($action) && $action === 'add_sujet' ? 'text-success':''}} " href="{{route('action',['action'=>'add_sujet'])}}">
+              <a class="nav-link {{isset($action) && $action === 'add_sujet' ? 'text-success':''}} " href="{{route('user',['action'=>'info-perso'])}}">
               <ion-icon name="add-circle-outline"></ion-icon>
-                Ajouter des QCM et QCD
+                Informations personnelles
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{isset($action) && $action === 'update_sujet' ? 'text-success':''}}" href="{{route('action',['action'=>'update_sujet'])}}">
-              <ion-icon name="pencil-outline"></ion-icon>
-                Modifier des QCM et QCD
+              <a class="nav-link {{isset($action) && $action === 'add_sujet' ? 'text-success':''}} " href="{{route('user',['action'=>'info-perso'])}}">
+              <ion-icon name="add-circle-outline"></ion-icon>
+                Notifications
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{isset($action) && $action === 'delete_sujet' ? 'text-success':''}}" href="{{route('action',['action'=>'delete_sujet'])}}">
-              <ion-icon name="trash-bin-outline"></ion-icon>
-                Suprimer des QCM et QCD
+              <a class="nav-link {{isset($action) && $action === 'add_sujet' ? 'text-success':''}} " href="{{route('user',['action'=>'status'])}}">
+              <ion-icon name="add-circle-outline"></ion-icon>
+                Voir status
               </a>
-            </li>
-            <hr>
-            <li class="nav-item">
-              <a class="nav-link" href="{{route('admin')}}">
-                <span data-feather="bar-chart-2"></span>
-                Utilisateurs
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="layers"></span>
-                inscrit un utilisateus
-              </a>
-            </li>
+            </li>   
           </ul>
 
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Creation d'examen</span>
-            <a class="link-secondary" href="#" aria-label="Add a new report">
-              <span data-feather="plus-circle"></span>
-            </a>
-          </h6>
-          <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Ajouter un examen
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="file-text"></span>
-                Resultat de l'examen
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-              <ion-icon name="chatbox-ellipses-outline"></ion-icon>
-                Message <span>0</span>
-              </a>
-            </li>
-            <hr>
-
-          </ul>
-          <div class="dropdown">
-  <button class="btn btn-warning px1 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Telecharger des fichiers
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">Slider</a></li>
-    <li><a class="dropdown-item" href="#">autre</a></li>
-    <li><a class="dropdown-item" href="#">Passer une information </a></li>
-  </ul>
-</div>
+         
         </div>
       </nav>
 
@@ -253,33 +203,51 @@
             <div class="btn-group me-2">
               <button type="button" class="btn btn-sm btn-outline-success">Exporter en pdf</button>
             </div>
-            <button type="button" class="btn btn-sm btn-outline-success dropdown-toggle">
-              <span data-feather="calendar"></span>
-              This week
-            </button>
+           
           </div>
         </div>
        
-        @if(isset($action))
-        @if($action === "add_sujet")
-          @include('admin.add_sujet')
-      
-
-        @elseif($action=== "update_sujet")
-         @include('admin.update_sujet')
-
-
-        @elseif($action === "delete_sujet")
-        @include('admin.delete_sujet')
-        
-        
-      @endif
-      @else
        
-        <h2>Liste des Utilisateurs</h2>
-        <livewire:users-table>
+        <h2>Informations personnelles</h2>
        
-      @endif
+        <form class="row g-3" style="font-size: 20px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+  <div class="col-auto">
+    <label for="nom" class="visually">Nom & prenoms</label>
+    <input type="text" style="font-weight: 800;" readonly class="form-control" id="nom" value="<?=Auth::user()->name?>">
+  </div>
+
+  <div class="col-auto">
+    <label for="email" class="visually">Email</label>
+    <input type="email" readonly class="form-control" id="nom" value="<?=Auth::user()->email?>">
+  </div>
+
+  <div class="col-auto">
+    <label for="nom" class="visually">Nivau</label>
+    <input type="text" readonly class="form-control" id="nom" value="<?=strtoupper(Auth::user()->nivau)?>">
+  </div>
+  <hr>
+
+  <div class="col-auto">
+    <label for="nom" class="visually">Télephone</label>
+    <input type="text" readonly class="form-control" id="nom" value="<?=Auth::user()->numero?>">
+  </div>
+
+  <div class="col-auto">
+    <label for="email" class="visually">Résidence</label>
+    <input type="email" readonly class="form-control" id="nom" value="<?=Auth::user()->city?>">
+  </div>
+
+  <div class="col-auto">
+    <label for="nom" class="visually">Ecole</label>
+    <input type="text" readonly class=" text-success form-control" id="nom" value="Universite Nangui abrogoua">
+  </div>
+  
+</form>
+
+    <a href="#" class="btn btn-danger mt-2">Supprimer mon compte</a>  <a href="#" class=" mt-2 btn btn-success">Modifier mon Mon compte </a>
+
+    <hr>
+     
   </main>
  
     </div>

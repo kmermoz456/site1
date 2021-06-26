@@ -6,15 +6,21 @@ use App\Models\Question;
 use App\Models\Sujet;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
 {
     public function admin()
     {
-        
-        return view('admin.dashbord',[
-            
-        ]);
+        if(Gate::allows('admin'))
+        {
+            return view('admin.dashbord',[]);
+        }
+        else{
+            return view('dashbord',[]);
+
+        }
+     
     }
 
     public function action($action)

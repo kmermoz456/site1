@@ -51,7 +51,7 @@
 @foreach($questions as $nq=>$q)
         <div class="col">
           <div class="card shadow-sm">
-          <div class="card-header"><h5 class="card-title">{{($nq+1).') '.$q->title}}</h5></div>
+          <div class="card-header"><h5 class="card-title">{{($nq+1).') '.$q->tilte}}</h5></div>
             <div class="card-body">
               <p class="card-text">
               <ul style="list-style: none;">

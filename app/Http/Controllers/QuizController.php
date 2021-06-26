@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Proposition;
 use App\Models\Sujet;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class QuizController extends Controller
 {
@@ -15,8 +17,9 @@ class QuizController extends Controller
 
     {
         
+                
         
-        $sujets = Sujet::where('nivau',$nivau)->get();
+        $sujets = Sujet::where('nivau',$nivau)->Paginate(3);
     return view("sujets",[
             "sujets" => $sujets,
             
@@ -24,6 +27,13 @@ class QuizController extends Controller
     }
 
     public function compo($title,$ue,$id,Request $request){
+           
+        
+        if(Gate::denies('non-abonner'))
+        {
+            return redirect(RouteServiceProvider::ABON,302);
+
+        }
 
         define("TYPE", "QCD");
 

@@ -3,6 +3,7 @@
     <div class="row">
          <!--Sujet-->
          <h3>Sujet</h3>
+         @if(isset($message)) <div class="alert alert-success">{{$message}}</div> @endif
         <form class="form" method="post" action="{{route('add_sujet')}}">
             @csrf
 
@@ -53,7 +54,7 @@
         
             <div class="row mt-2">
                 <!--Questions-->
-    <div class="alert alert-success">{{$message?? ""}}</div>
+   
                 <h3>Question</h3>
 
                 <form class="form" method="POST" action="{{route('add_quest')}}">
@@ -148,7 +149,7 @@
                         <select class="form-select" name="question_id" id="q" required>
                             <option value="">selectionner la question qui correspond</option>
                             @foreach($questions as $q)
-                            <option class="lead" value="{{$q->id}}">{{$q->title}} (du sujet {{$q->sujet->title}} qui a {{$q->good_answers}}{{$q->good_answsers >0 ? 'reponses justes':'reponse juste'}})</option>
+                            <option class="" value="{{$q->id}}">{{$q->tilte}} (du sujet {{$q->sujet->tilte}} qui a {{$q->good_answers}} {{$q->good_answsers >0 ? 'reponses justes':'reponse juste'}})</option>
                             @endforeach
                         </select>
 

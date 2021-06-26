@@ -9,8 +9,10 @@ use Livewire\WithPagination;
 class UsersTable extends Component
 {
 
-    use WithPagination;
-
+    public function paginationView()
+    {
+        return('vendor.pagination.bootstrap-4');
+    }
       
       public string $search ="";
       public $orderName = "id";

@@ -9,12 +9,14 @@ use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Sujet;
+use App\Models\User;
 use DateTime;
 
 class ViewController extends Controller
 {
     public function home(Request $requet)
     {
+       
    
     $sujets = Sujet::get()->take(3);
     return view("home",[
@@ -35,5 +37,15 @@ class ViewController extends Controller
     {
         return view('contact');
     }
+
+    public function non_abonner()
+    {
+        return view('non-abonner',
+    [
+        "title" => "Non-abonner",
+    ]
+    );
+    }
+
 
 }

@@ -1,56 +1,72 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <title>{{$title ?? 'Digicochage'}}</title>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+ 
+    </style>
+@livewireStyles
+    </head>
+<body class="bg-dark">
+<header class="my-5 text-center">
+<h1 class="text-white">Authentification</h1>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+<img src="favicon.png" width="100" height="100" alt="" >
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+</header>
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+    <div class="container shadow bg-white mt-5 p-3" style="margin-bottom: 130px;">
+    <form class="form" action ="{{route('login')}}"  method="post">
+    @csrf
+      <div class="form-group">
+      <label class="email">Email:</label>
+      <input type="email" name="email" class="form-control" required placeholder="Ex:aaaa@gmail.com">
+      </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+      <!--Mot de passe-->
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
+      <div class="form-group ">
+      <label class="mdp">Mot de passe:</label>
+      <input type="password" name="password" id="mdp" required class="form-control" placeholder="Mot de passe" autocomplete="current-password">
+      </div>
+      <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                    <a class="btn btn-dark" href="{{ route('password.request') }}">
+                       Mot de passe oublier
                     </a>
                 @endif
 
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
+                <x-button class="btn btn-success">
+                    {{ __('soumettre') }}
                 </x-button>
             </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    </form>
+
+    </div>
+    
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="{{asset('js/app.js')}}"></script>   
+ @livewireScripts
+</body>
+@include("partials.footer")
+</html>

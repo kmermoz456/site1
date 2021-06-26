@@ -4,7 +4,7 @@
 <div class="container-fluid my-5">
 <h1> sujet </h1>
 <div class="album py-5 bg-light">
-<div style="font-family: cursive;" class="container">
+<div style="font-family: Arial;" class="container">
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
 @foreach( $sujets as $sujet)
@@ -32,7 +32,9 @@
         </div>
  @endforeach       
 </div>
-
+<div class="row mt-5 text-success">
+  {{$sujets->links()}}
+</div>
 </div>
 </div>
 </div>

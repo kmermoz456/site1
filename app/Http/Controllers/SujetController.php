@@ -6,16 +6,22 @@ use App\Models\Proposition;
 use App\Models\Question;
 use App\Models\Sujet;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
 class SujetController extends Controller
 {
     public function add_sujet(Request $request)
     {
+        
+        $request->validate([
+            'title' => 'required|string|max:255',
+            
+        ]);
         $request = $request->all();
         
-
-        $sujets = Sujet::create(
+       
+        Sujet::create(
             [
                 "title"=>$request['title'],
                 "ue"=>$request['ue'],
@@ -23,21 +29,23 @@ class SujetController extends Controller
                 "type" =>$request['type']
             ]
         );
-        $status = true;
-        return view('admin.dashboard',[
-            "status" => $status
-        ]);        
+        $status = "Crée avec succès";
+        return redirect(RouteServiceProvider::AD_PAGE,302);
 
     }
 
     public function add_quest(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            
+        ]);
         $request = $request->all();
         
  
         $questions = Question::create(
             [
-                "title"=>$request['title'],
+                "tilte"=>$request['title'],
                 "point"=>$request['point'],
                 "good_answers" =>$request['good_answers'],
                 "type" => $request['type'],
@@ -47,12 +55,18 @@ class SujetController extends Controller
             ]
         );
         
-       return view("admin.dashbord",["succes"=>"Question créer avec succcès"]);              
+        return redirect(RouteServiceProvider::AD_PAGE,302);
+            
     }
 
     public function add_prop(Request $request)
    
-    {/*
+    {
+
+        $request->validate([
+            'propos' => 'required|string|max:255',
+            
+        ]);
         $request = $request->except('_token');
         
    
@@ -64,11 +78,9 @@ class SujetController extends Controller
 
              
             ]
-        );*/
-        $message = "Operation réussite !";
-       return view('admin.dashbord',[
-           "message" => $message,
-       ]);                    
+        );
+                           
+        return redirect(RouteServiceProvider::AD_PAGE,302);
 
     }
 }
