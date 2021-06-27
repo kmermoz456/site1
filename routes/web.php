@@ -31,8 +31,16 @@ Route::post('/admin/add-quest/',[SujetController::class,'add_quest'])->name('add
 Route::post('/admin/add-prop/',[SujetController::class,'add_prop'])->name('prop');
 Route::get('/non-abonner',[ViewController::class,'non_abonner'])->name('non.abonner');
 Route::get('/dashbord/{action}',[UserController::class,'user'])->name('user')->middleware('auth');
+Route::post('/dashbord/update/{action}',[SujetController::class,'update'])->name('update')->middleware('auth');
 
 
+Route::post('/livewire',function(){
+    return view('livewire');
+  });
+
+  Route::get('/livewire',function(){
+    return view('livewire');
+  });
 
 
 

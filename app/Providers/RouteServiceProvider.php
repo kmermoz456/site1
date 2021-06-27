@@ -20,6 +20,9 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
     public const AD_PAGE = '/admin/add_sujet';
     public const ABON = '/non-abonner';
+    public const UDP_S = '/admin/update_sujet';
+
+    
 
 
 

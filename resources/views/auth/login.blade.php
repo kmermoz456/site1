@@ -32,7 +32,7 @@
 
 </header>
 
-    <div class="container shadow bg-white mt-5 p-3" style="margin-bottom: 130px;">
+    <div class="container rounded shadow col-md-4 col-sm-4 px-3 bg-white mt-5 p-3" style="margin-bottom: 130px;">
     <form class="form" action ="{{route('login')}}"  method="post">
     @csrf
       <div class="form-group">

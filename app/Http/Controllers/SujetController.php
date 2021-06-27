@@ -83,4 +83,30 @@ class SujetController extends Controller
         return redirect(RouteServiceProvider::AD_PAGE,302);
 
     }
+
+
+    public function update($action,Request $request)
+    {
+        if($action === 'update_sujet')
+        {
+           
+            $request->validate([
+                'title' => 'required|string|max:255',
+                
+            ]);
+                      
+     
+             Sujet::find($request->id)->update([
+
+                "title" => $request->title,
+                "ue" => $request->ue,
+                "nivau" => $request->nivau,
+                "type"=> $request->type
+
+            ]);
+            
+            return redirect(RouteServiceProvider::UDP_S,302);
+
+        }
+    }
 }
