@@ -19,7 +19,7 @@ use Faker\Provider\Color;
               <th wire:click="pagination('email')">email</th>
               <th wire:click="pagination('status')">status</th>
               <th wire:click="pagination('role')">Role</th>
-              <th wire: click="pagination('created_at')">Créer le</th>
+              <th>Action</th>
               
 
 
@@ -42,7 +42,15 @@ use Faker\Provider\Color;
               @else
               <td class="text-danger">Utilisateur</td>
               @endif
-              <td>{{$user->created_at}}</td>
+
+              <td>@if($user->status == 1)
+              <a href="{{route('client',['action'=>'desactiver','id'=> $user->id])}}" class="btn btn-sm btn-danger">Désactiver</a>
+                @else
+              <a href="{{route('client',['action'=>'activer','id'=> $user->id])}}" class="btn btn-sm btn-success">Activer</a>
+              
+               @endif
+              
+              </td>
              
             </tr>
             @endforeach

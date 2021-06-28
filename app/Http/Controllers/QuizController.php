@@ -142,4 +142,77 @@ class QuizController extends Controller
       
     } 
     */
+
+
+    public function demo($title,$ue,$id,Request $request){
+           
+        
+              
+
+    $questions = Question::where('sujet_id',$id)->get();
+    
+  
+    $grilles = $request->except('_token');
+
+   
+   
+    $total = 0;
+    $show = false;
+
+    if($grilles)
+    {
+       foreach($grilles as $nq => $grille)
+       {
+        
+        $bareme = Question::find($nq);
+       
+        if($bareme->type == 'QCD')
+        {
+            if($bareme->point == $grille)
+            {
+                $total += 1;
+                 $show = 1;
+
+                }else{
+                $total -= 1;
+                $show = 1;
+                
+            }
+
+           
+        }else{
+         $agregat = [];
+        foreach($grille as $pid )
+        {
+           $agregat[] = Proposition::find($pid)->point;
+           
+        }
+
+         if(count($agregat) == $bareme->good_answers && !in_array(0,$agregat))
+         {
+            $total += $bareme->point;
+            $show = true;
+
+         }
+         else{
+            $total -= $bareme->point;
+             $show = true;
+
+         }
+
+        }
+       }
+    }
+
+    return view('demo',[
+        'questions'=>$questions,
+        'title' => $title,
+        'ue' => $ue,
+        'id' => $id,
+        'total' => $total,
+        'show' => $show
+    ]);
+
+    }
+   
 }

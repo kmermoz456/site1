@@ -33,6 +33,23 @@
 </header>
 
     <div class="container rounded shadow col-md-4 col-sm-4 px-3 bg-white mt-5 p-3" style="margin-bottom: 130px;">
+    <div class="row">
+@if ($errors->any())
+    <div>
+        <div class="text-danger">
+            {{ __('Whoops! Des erreurs.') }}
+        </div>
+
+        <ul class="mt-3 list-disc list-inside text-sm text-red-600">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
+</div>
     <form class="form" action ="{{route('login')}}"  method="post">
     @csrf
       <div class="form-group">
@@ -59,7 +76,7 @@
                 </x-button>
             </div>
     </form>
-
+  <small class="text-muted"> Crée un compte <a href="/register">ici</a> </small>
     </div>
     
 

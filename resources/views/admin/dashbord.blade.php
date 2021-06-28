@@ -225,7 +225,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{{route('action',['action'=>'message'])}}">
               <ion-icon name="chatbox-ellipses-outline"></ion-icon>
                 Message <span>0</span>
               </a>
@@ -271,7 +271,10 @@
 
         @elseif($action === "delete_sujet")
         @include('admin.delete_sujet')
-        
+
+        @elseif($action === "message")
+        <livewire:message-help>
+       
         
       @endif
       @else

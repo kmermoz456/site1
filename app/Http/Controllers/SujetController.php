@@ -13,6 +13,8 @@ class SujetController extends Controller
 {
     public function add_sujet(Request $request)
     {
+
+        
         
         $request->validate([
             'title' => 'required|string|max:255',
@@ -87,9 +89,12 @@ class SujetController extends Controller
 
     public function update($action,Request $request)
     {
+
+
+        
         if($action === 'update_sujet')
         {
-           
+            dd("jE SUIS LA SUJET");
             $request->validate([
                 'title' => 'required|string|max:255',
                 
@@ -107,6 +112,87 @@ class SujetController extends Controller
             
             return redirect(RouteServiceProvider::UDP_S,302);
 
+        }elseif( $action === 'update_question')
+             
+        {
+           
+              
+        $request->validate([
+            'title' => 'required|string|max:255',
+            
+        ]);
+        
+ 
+         Question::find($request->id)->update([
+
+            "tilte" => $request->title,
+            "point" => $request->point,
+            "good_answers" => $request->good_answers,
+            "type"=> $request->type
+
+        ]);
+
+        dd("Question modifier");
+        
+        return redirect(RouteServiceProvider::UDP_S,302);
+
+    }elseif( $action === 'update_propos')
+             
+    {
+       
+          
+    $request->validate([
+        'propos' => 'required|string|max:255',
+        
+    ]);
+    
+
+     Proposition::find($request->id)->update([
+
+        "propos" => $request->propos,
+        "point" => $request->point,
+        
+
+    ]);
+
+   
+    
+    return redirect(RouteServiceProvider::UDP_S,302);
+
+}
+
+    
+}
+        public function delete($action,$id,Request $request)
+        {
+        
+            if($action === "sujet")
+            {
+               
+                Sujet::find($id)->delete();
+                 return redirect(RouteServiceProvider::UDP_S,302);
+
+            }
+
+            if($action === "question")
+            {
+                dd("question");
+
+                Sujet::find($id)->delete();
+                return redirect(RouteServiceProvider::UDP_S,302);
+
+            }
+
+            if($action === "propo")
+            {
+                dd("propo");
+
+                Sujet::find($id)->delete();
+              return redirect(RouteServiceProvider::UDP_S,302);
+
+            }
+
         }
-    }
+
+
 }

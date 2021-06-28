@@ -207,7 +207,11 @@
           </div>
         </div>
        
-       
+       @if(isset($action))
+       @if($action === 'notifications')
+       @include('messageuser')
+       @endif
+       @endif
         <h2>Informations personnelles</h2>
        
         <form class="row g-3" style="font-size: 20px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
@@ -241,8 +245,22 @@
     <label for="nom" class="visually">Ecole</label>
     <input type="text" readonly class=" text-success form-control" id="nom" value="Universite Nangui abrogoua">
   </div>
+
+  <div class="col-auto">
+    <label for="nom" class="visually">status</label>
+    <input type="text" readonly class=" {{Auth::user()->status ? 'text-success' : 'text-danger'}} form-control" id="nom"
+     value="{{Auth::user()->status ? 'abonner' : 'non abonner'}}">
+  </div>
   
 </form>
+
+   @if(!Auth::user()->status)
+   <div class="mt-2">
+
+  <a  href="{{route('non.abonner')}}" class="btn btn-sm btn-dark shadow-sm">Demander un abonnement</a>
+  </div>
+
+  @endif
 
     <a href="#" class="btn btn-danger mt-2">Supprimer mon compte</a>  <a href="#" class=" mt-2 btn btn-success">Modifier mon Mon compte </a>
 

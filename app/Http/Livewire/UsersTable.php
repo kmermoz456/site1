@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class UsersTable extends Component
 {
 
-    use WithPagination;
+
     public function paginationView()
     {
         return('vendor.pagination.bootstrap-4');
@@ -19,10 +19,7 @@ class UsersTable extends Component
       public $orderName = "id";
       public $orderDirection = "ASC";
 
-      protected $queryString = [
-          "search" => ['except' =>""]
-      ];
-
+     
       public function pagination(string $name)
       {
           if($name === $this->orderName)

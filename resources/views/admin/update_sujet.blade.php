@@ -1,10 +1,11 @@
 <h3>Mise à jour</h3>
 <div class="container p-3 ">
 
-    <div class="row">
          <!--Sujet-->
+
+         <div>
          <h4>Sujet</h4>
-        <form class="form" method="post" action="{{route('update',['action' => 'update_sujet'])}}">
+        <form class="form row" method="post" action="{{route('update',['action' => 'update_sujet'])}}">
             @csrf
 
             <div class="col-md-4 ">
@@ -21,11 +22,8 @@
             <div class="form-group">
                 <label for="title" class=" ml-1 input-label">Titre</label><input class="form-control" id="title" type="text" require name="title"  placeholder="EX: Glucide :les oses">
             </div>
-            <div class="my-3">
-            </div>
-               
-
-            <div class="row">
+            
+            
                 <div class="col-md-4 ">
                     <label for="nivau" class="form-label">Nivau:</label>
                     <select class="form-select" name="nivau" id="nivau"  required>
@@ -56,28 +54,42 @@
                     </select>
 
                 </div>
-            </div>
+         
             
-            <button type="submit" class=" mt-2 btn btn-outline-success">Modifier ce sujet </button>
+          <div>  <button type="submit" class=" mt-2 btn btn-outline-success">Modifier ce sujet </button></div>
         </form>
             </div>
 
-        
-            <div class="row mt-2">
-                <!--Questions-->
+          <!--Questions-->
+        <div class="mt-2">
+              
    
                 <h3>Question</h3>
 
-                <form class="form" method="POST" action="{{route('add_quest')}}">
+      <form class="form row" method="POST" action="{{route('update',['action'=>'update_question'])}}">
             @csrf
+                <!---->
+
+            <div class="col-md-4 ">
+                    <label for="id" class="form-label">Question à modifier</label>
+                    <select class="form-select shadow" name="id" id="id" required>
+                        <option value="">choisir...</option>
+                        @foreach($questions as $q)
+                        <option value="{{$q->id}}">{{$q->tilte}} : bonne reponse: {{$q->good_answers}} ({{$q->type}}) -> {{$q->sujet->title}} ({{$q->sujet->ue}})</option>
+                       @endforeach
+
+                    </select>
+            </div>
+
+                <!---->
 
                 <div class="form-group">
-                    <label for="title" class=" ml-1 input-label">Titre du sujet </label><input class="form-control" id="title" type="text" name="title" placeholder="EX: Glucides : les oses">
+                    <label for="title" class=" ml-1 my-2 input-label">Titre de la question </label><input class="form-control" id="title" type="text" name="title" placeholder="EX: Glucides : les oses">
                 </div>
-                <div class="my-3">
-                </div>
-                <div class="row">
-                    <div class="col-md-5 ">
+                <!---->
+              
+
+                    <div class="col-md-4 ">
                         <label for="nbre" class="form-label">Nombre de proposition juste:</label>
                         <select class="form-select" name="good_answers" id="nbre" required>
                             <option value="0">0</option>
@@ -90,7 +102,10 @@
 
                         </select>
                     </div>
-                    <div class="col-md-5 ">
+               
+                <!---->
+
+                    <div class="col-md-4 ">
 
                         <label for="sujet" class="form-label">Cette question a pour parent</label>
                         <select class="form-select" name="sujet_id" id="sujet" required>
@@ -101,7 +116,9 @@
                         </select>
 
                     </div>
-                    <div class="col-md-5 ">
+                <!---->
+
+                    <div class="col-md-4">
 
                  <label for="type" class="form-label">Type de question </label>
                         <select class="form-select" name="type" id="type" required>
@@ -111,10 +128,11 @@
                         </select>
 
                     </div>
+                <!---->
 
-                    <div class="col-md-5 ">
+                    <div class="col-md-4 ">
 
-                <label for="nature" class="form-label"> Nature de la question bonne(1) ou mauvaise (0) reponse </label>
+                <label for="nature" class="form-label"> Nature de la question bonne(1) ou mauvaise (0) reponse (QCM)- (0) si la question est fausse (1) si la question est juste (QCD) </label>
                 <select class="form-select" name="point" id="nature" required>
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -125,27 +143,33 @@
 
 
 
-
-
-                </div>
- <button type="submit" class="m-2 btn btn-outline-success"> Ajouter une question</button>
-
-                </form>
-            </div>
-
-            <div class="row mt-2">
-            <form class="form" method="POST" action="{{route('prop')}}">
+                <div>
+            <button type="submit" class="m-2 btn btn-outline-success"> Modifier cette question</button>
+    
+             </div>
+             </form>
+        </div>
+  <!--Propositions-->
+            <div class="mt-2">
+            <h3>Propositions</h3>
+     <form class="form row" method="POST" action="{{route('update',['action'=>'update_propos'])}}">
             @csrf
-                <!--Propositions-->
+            <div class="col-md-4 ">
+                    <label for="id" class="form-label">Proposition à modifier</label>
+                    <select class="form-select  shadow" name="id" id="id" required>
+                        <option value="">choisir...</option>
+                        @foreach($propos as $p)
+                        <option value="{{$p->id}}">{{$p->propos}} : bonne reponse: {{$p->point ? 'oui' : 'non'}} -> {{$p->question->tilte}})</option>
+                       @endforeach
 
-                <h3>Propositions</h3>
-
+                    </select>
+            </div>
+              
                 <div class="form-group">
-                    <label for="p" class=" ml-1 input-label">Propositions </label><input class="form-control" id="p" type="text" name="propos" placeholder="EX: Glucides : les oses">
+                    <label for="p" class=" ml-1  input-label">Propositions </label><input class="form-control" id="p" type="text" name="propos" placeholder="EX: Glucides : les oses">
                 </div>
-                <div class="my-3">
-                </div>
-                <div class="row">
+                <!---->
+              
                     <div class="col-md-5 ">
                         <label for="nbre" class="form-label">Nombre de point 1 pour bonne reponse 0 pour mauvause reponse:</label>
                         <select class="form-select" name="point" id="nbre" required>
@@ -154,6 +178,7 @@
                             
                         </select>
                     </div>
+
                     <div class="col-md-5 ">
 
                         <label for="q" class="form-label">Cette question a pour parent</label>
@@ -166,15 +191,10 @@
 
                     </div>
                   
-                </div>
+                                 
+                     <div>   <button type="submit" class="m-2 btn btn-outline-success">Modifier cette proposition</button></div>
+            </form>
 
             </div>
-    </div>
- <button type="submit" class="m-2 btn btn-outline-success">Ajouter une propositions</button>
-    </form>
-
-    
-</div>
-
-
-</div>
+        </div>
+        

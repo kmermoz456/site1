@@ -44,12 +44,10 @@
           <div class="card-body">
             <h1 class="card-title text-success pricing-card-title">1.000 CFA</h1>
             <ul class="list-unstyled mt-3 mb-4">
-              <li>10 users included</li>
-              <li>2 GB of storage</li>
-              <li>Email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="w-100 btn btn-lg btn-outline-success">Je m'abonne</button>
+              <li>QCM et QCD</li>
+              <li>Examens</li>
+             </ul>
+            <a type="button" href="/abonnement" class="w-100 btn btn-lg btn-outline-success">Je m'abonne</a>
           </div>
         </div>
       </div>
@@ -61,12 +59,12 @@
           <div class="card-body">
             <h1 class="card-title text-success pricing-card-title">10.000 CFA</h1>
             <ul class="list-unstyled mt-3 mb-4">
-              <li>20 users included</li>
-              <li>10 GB of storage</li>
-              <li>Priority email support</li>
-              <li>Help center access</li>
+              <li>QCM et QCD</li>
+              <li>Examens</li>
+              <li>20% Réduction</li>
+            
             </ul>
-            <button type="button" class="w-100 btn btn-lg btn-outline-success">Je m'abonne</button>
+            <a type="button" href="/abonnement"   class="w-100 btn btn-lg btn-outline-success">Je m'abonne</a>
           </div>
         </div>
       </div>
@@ -96,6 +94,9 @@
       @endforeach
 
      </div>
+     <div class="btn-group mt-2">
+     <a href="{{route('demo',['title'=> str_replace(' ','_',$demo->title),'ue'=>$demo->ue,'id'=>$demo->id])}}" type="button" class="btn btn-sm btn-outline-success">Faire une demo</a>
+    </div>
      </div>
 </div>  
      

@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Auth;
 
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <li><a class="dropdown-item" href="/admin">Tableau de bord</a></li>
+    <li><a class="dropdown-item" href="/admin">Notifications</a></li>
     <li><a class="dropdown-item" href="{{route('logout')}}">Deconnexion</a></li>
   </ul>
 </div>

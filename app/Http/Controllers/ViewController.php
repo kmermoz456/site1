@@ -17,10 +17,11 @@ class ViewController extends Controller
     public function home(Request $requet)
     {
        
-   
-    $sujets = Sujet::get()->take(3);
+        $demo = Sujet::find(1);
+        $sujets = Sujet::get()->take(3);
     return view("home",[
         "sujets" => $sujets,
+        "demo" => $demo,
         
     ]);
     }
