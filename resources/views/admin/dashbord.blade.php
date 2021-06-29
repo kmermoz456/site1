@@ -227,7 +227,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{route('action',['action'=>'message'])}}">
               <ion-icon name="chatbox-ellipses-outline"></ion-icon>
-                Message <span>0</span>
+                Message <span class="lead">{{$count ?? ""}}</span>
               </a>
             </li>
             <hr>
@@ -238,9 +238,10 @@
     Telecharger des fichiers
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">Slider</a></li>
-    <li><a class="dropdown-item" href="#">autre</a></li>
-    <li><a class="dropdown-item" href="#">Passer une information </a></li>
+    <li><a class="dropdown-item" href="{{route('action',['action'=>'slider'])}}">affiche</a></li>
+    <li><a class="dropdown-item" href="{{route('action',['action'=>'image'])}}">images</a></li>
+    <li><a class="dropdown-item" href="#">pdf</a></li>
+    <li><a class="dropdown-item" href="#">video</a></li>
   </ul>
 </div>
         </div>
@@ -253,10 +254,8 @@
             <div class="btn-group me-2">
               <button type="button" class="btn btn-sm btn-outline-success">Exporter en pdf</button>
             </div>
-            <button type="button" class="btn btn-sm btn-outline-success dropdown-toggle">
-              <span data-feather="calendar"></span>
-              This week
-            </button>
+            
+            
           </div>
         </div>
        
@@ -271,6 +270,10 @@
 
         @elseif($action === "delete_sujet")
         @include('admin.delete_sujet')
+
+        @elseif($action === "download")
+       @include('admin.download')
+       
 
         @elseif($action === "message")
         <livewire:message-help>

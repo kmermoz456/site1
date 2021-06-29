@@ -10,7 +10,7 @@ class UserController extends Controller
 {
      public function user($action)
      {
-          $message = Message::where('user_id',1)->paginate(10);
+          $message = Message::where('destinateur',Auth::user()->id)->paginate(10);
           return view('dashbord',[
                "action" => $action,
                "messages" => $message

@@ -11,11 +11,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Sujet;
 use App\Models\User;
 use DateTime;
+use Illuminate\Support\Facades\Storage;
 
 class ViewController extends Controller
 {
     public function home(Request $requet)
     {
+
+       // dd(Storage::url('icon.png'));
        
         $demo = Sujet::find(1);
         $sujets = Sujet::get()->take(3);

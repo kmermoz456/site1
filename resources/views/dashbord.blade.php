@@ -179,7 +179,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{isset($action) && $action === 'add_sujet' ? 'text-success':''}} " href="{{route('user',['action'=>'info-perso'])}}">
+              <a class="nav-link {{isset($action) && $action === 'add_sujet' ? 'text-success':''}} " href="{{route('user',['action'=>'notifications'])}}">
               <ion-icon name="add-circle-outline"></ion-icon>
                 Notifications
               </a>
@@ -210,9 +210,9 @@
        @if(isset($action))
        @if($action === 'notifications')
        @include('messageuser')
-       @endif
-       @endif
-        <h2>Informations personnelles</h2>
+       
+       @else
+       <h2>Informations personnelles</h2>
        
         <form class="row g-3" style="font-size: 20px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
   <div class="col-auto">
@@ -266,6 +266,9 @@
 
     <hr>
      
+  @endif
+
+@endif
   </main>
  
     </div>

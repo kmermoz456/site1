@@ -19,7 +19,7 @@ class QuizController extends Controller
         
                 
         
-        $sujets = Sujet::where('nivau',$nivau)->Paginate(3);
+        $sujets = Sujet::where('nivau',$nivau)->Paginate(10);
     return view("sujets",[
             "sujets" => $sujets,
             

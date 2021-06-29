@@ -3,7 +3,7 @@
 @section("content")
 <main class="container-fluid">
 <div class="mt-4">
- <img class=" shadow-sm rounded bd-placeholder-img" src="images/img1.png" style=" margin-bottom: 30px;margin-top: 30px; width: 100%; height:500px;">
+ <img class=" shadow-sm rounded bd-placeholder-img" src="file:///home/mermoz456/Bureau/unasite/storage/app/public/sliders/1624910712.png" style=" margin-bottom: 30px;margin-top: 30px; width: 100%; height:500px;">
  </div>
 
 
@@ -101,11 +101,7 @@
 </div>  
      
     </div>
-<div class="m-5">
 
-
-
-</div>
 
     </main>
 @endsection

@@ -9,10 +9,14 @@ class MessageHelp extends Component
 {
     public function render()
     {
-        
+       
+     $Message =Message::where('destinateur',1)->paginate(10);
+     
+      
         return view('livewire.message-help',
     [
-        "messages" => Message::where('destinateur',1)->paginate(10),
+        "messages" => $Message,
+        
     ]);
     }
 }

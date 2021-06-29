@@ -2,7 +2,7 @@
 <div>
  <h3 class="text-center">Message reçu</h3>
  <div class="container p-5 bg-light">
- <table class="table table-dark table-striped">
+ <table class="table table-hover table-striped">
  <tr>
  <th>N°</th>
  <th>Message</th>

@@ -27,6 +27,8 @@ class RouteServiceProvider extends ServiceProvider
     public const CLI = '/admin';
     public const HELP = '/admin/message';
 
+    public const DOW = '/admin/download';
+
 
 
 

@@ -1,7 +1,8 @@
+
 <footer style="margin-bottom: 0px;" class=" text-white bg-dark pt-4  px-5  border-top">
     <div class="row bg-dark">
       <div class="col-12 col-md">
-        <img class="mb-2" src="favicon.png" alt="" width="70" height="50">
+        <img class="mb-2" src="{{Storage::url('icon.png')}}" alt="" width="70" height="50">
         <small class="d-block mb-3 text-muted">&copy; 2021-2022</small>
       </div>
       <div class="col-6 col-md">

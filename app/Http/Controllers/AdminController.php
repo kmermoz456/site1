@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Proposition;
 use App\Models\Question;
 use App\Models\Sujet;
@@ -16,7 +17,8 @@ class AdminController extends Controller
     {
         if(Gate::allows('admin'))
         {
-            return view('admin.dashbord',[]);
+            $count = Message::where('destinateur',1)->get()->count();
+            return view('admin.dashbord',["count" => $count ]);
         }
         else{
             return view('dashbord',[]);
@@ -28,6 +30,7 @@ class AdminController extends Controller
     public function action($action)
     {
         $users = User::all();
+        
         $sujets = Sujet::all();
         $questions = Question::where('type','QCM')->get();
         return view('admin.dashbord',[

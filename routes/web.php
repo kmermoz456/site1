@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SujetController;
@@ -38,6 +39,7 @@ Route::get("/demo/{title}-{ue}-{id}",[QuizController::class,"demo"])->name('demo
 Route::post("/demo/{title}-{ue}-{id}",[QuizController::class,"demo"])->name('democheck');
 Route::get("/admin/abonnement/{action}-{id}",[AdminController::class,'client'])->name('client')->middleware('auth');
 Route::post("/user/message/{idd}-{ide}-{direction}",[MessageController::class,'help'])->name('message')->middleware('auth');
+Route::post('/download/{action}',[DownloadController::class,'storage'])->name('storage')->middleware('auth'); //telechargemnt
 
 
 
