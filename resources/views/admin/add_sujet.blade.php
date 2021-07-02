@@ -54,14 +54,18 @@
         
             <div class="row mt-2">
                 <!--Questions-->
+          <livewire:update-sujet/>
+
    
                 <h3>Question</h3>
 
-                <form class="form" method="POST" action="{{route('add_quest')}}">
+                <form class="form" method="POST" action="{{route('add_quest')}}" enctype="multipart/form-data">
             @csrf
+                <label>Image liée a la question</label>
+                <input type="file" name="file">
 
                 <div class="form-group">
-                    <label for="title" class=" ml-1 input-label">Titre du sujet </label><input class="form-control" id="title" type="text" name="title" placeholder="EX: Glucides : les oses">
+                    <label for="title" class=" ml-1 input-label">Titre du sujet </label><textarea class="form-control" id="title" type="text" name="title" placeholder="EX: Glucides : les oses"></textarea>
                 </div>
                 <div class="my-3">
                 </div>
@@ -81,13 +85,7 @@
                     </div>
                     <div class="col-md-5 ">
 
-                        <label for="sujet" class="form-label">Cette question a pour parent</label>
-                        <select class="form-select" name="sujet_id" id="sujet" required>
-                        @foreach($sujets as $sujet )
-                        <option value="{{$sujet->id}}">{{$sujet->title}} : {{$sujet->ue}} : {{strtoupper($sujet->nivau)}} </option>
-                           @endforeach
-
-                        </select>
+                       <input type="number" class="form-control" name="sujet_id" placeholder="id du sujet ici" >
 
                     </div>
                     <div class="col-md-5 ">
@@ -123,6 +121,8 @@
             </div>
 
             <div class="row mt-2">
+          <livewire:update-question/>
+
             <form class="form" method="POST" action="{{route('prop')}}">
             @csrf
                 <!--Propositions-->
@@ -130,7 +130,7 @@
                 <h3>Propositions</h3>
 
                 <div class="form-group">
-                    <label for="p" class=" ml-1 input-label">Propositions </label><input class="form-control" id="p" type="text" name="propos" placeholder="EX: Glucides : les oses">
+                    <label for="p" class=" ml-1 input-label">Propositions </label><textarea class="form-control" id="p" type="text" name="propos" placeholder="EX: Glucides : les oses"></textarea>
                 </div>
                 <div class="my-3">
                 </div>
@@ -144,15 +144,8 @@
                         </select>
                     </div>
                     <div class="col-md-5 ">
-
-                        <label for="q" class="form-label">Cette question a pour parent</label>
-                        <select class="form-select" name="question_id" id="q" required>
-                            <option value="">selectionner la question qui correspond</option>
-                            @foreach($questions as $q)
-                            <option class="" value="{{$q->id}}">{{$q->tilte}} (du sujet {{$q->sujet->tilte}} qui a {{$q->good_answers}} {{$q->good_answsers >0 ? 'reponses justes':'reponse juste'}})</option>
-                            @endforeach
-                        </select>
-
+                    <input type="number" required class="name" name="question_id" placeholder="id du parent">
+                      
                     </div>
                   
                 </div>

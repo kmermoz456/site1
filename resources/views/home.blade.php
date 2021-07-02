@@ -2,9 +2,7 @@
 
 @section("content")
 <main class="container-fluid">
-<div class="mt-4">
- <img class=" shadow-sm rounded bd-placeholder-img" src="file:///home/mermoz456/Bureau/unasite/storage/app/public/sliders/1624910712.png" style=" margin-bottom: 30px;margin-top: 30px; width: 100%; height:500px;">
- </div>
+<livewire:home-carrousel/>
 
 
 <div class="container marketing">
@@ -12,25 +10,22 @@
     <!-- Three columns of text below the carousel -->
     <div style="font-family:Arial;" class="row">
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="brown"/><text x="50%" y="50%" fill="#FFF" dy=".3em">Plus de ressources papiers</text></svg>
 
-        <h2>Plus de sujet papiers</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <h2>Plus de ressources papiers</h2>
+        <p>Désormais vous pouvez réviser vos QCM et QCD sans les documents .</p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="green"/><text x="50%" y="50%" fill="#FFF" dy=".3em">Finis les coups d'oeil</text></svg>
 
         <h2>Fini les coups d'oeil</h2>
-        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <p>Lorsque vous cochez un sujet de traiter au stylo vous ne pouvez pas vous en passéz de regarder.</p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="cyan"/><text x="50%" y="50%" fill="#FFF" dy=".3em">Cocher n'importe ou</text></svg>
 
         <h2>Cocher n'importe où</h2>
-        <p>And lastly this, the third column of representative placeholder content.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <p>Vous pouvez coher quelque soit votre position des maintenant.</p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 
@@ -39,10 +34,10 @@
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
           <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Par mois</h4>
+            <h4 class="my-0 fw-normal">Jusqu'a la fin de l'année-académique</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title text-success pricing-card-title">1.000 CFA</h1>
+            <h1 class="card-title text-success pricing-card-title">1.500 CFA</h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li>QCM et QCD</li>
               <li>Examens</li>

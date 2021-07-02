@@ -28,7 +28,7 @@ use Faker\Provider\Color;
           <tbody>
       @foreach($users as $user)
             <tr>
-            <td>   <span style="width:100%; height:100%; background-color: #<?=$user->color?> ;" class=" p-1 bd-placeholder-img  text-white  rounded-circle" >{{$user->id}}</span> </td>
+            <td>   <span style="width:100%; height:100%; background-color: <?=$user->color?> ;" class=" p-1 bd-placeholder-img  text-white  rounded-circle" >{{$user->id}}</span> </td>
              
               <td>{{$user->name}}</td>
               <td>{{$user->email}}</td>

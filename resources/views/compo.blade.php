@@ -36,7 +36,7 @@
           <h2>UE:{{ $ue ? strtoupper($ue) : ''}}</h2>
           <h2>Titre:{{ $title ? strtolower(str_replace('_',' ',$title)): ''}}</h2>
           <h2 class="text-center">NOTE</h2>
-          <h1 style="font-family: fantasy; color:cornflowerblue; font: size 100px;"><span class="{{$total > 0 ? 'text-success' :'text-danger' }}"> {{$total}} </span> /30</h1>
+          <h1 style="font-family: fantasy; color:cornflowerblue; font: size 100px;"><span class="{{$total /2 > $note ? 'text-success' :'text-danger' }}"> {{$total}} </span> / {{$note}}</h1>
           </div>
       </div>
       
@@ -49,9 +49,10 @@
  <form class="form row row-cols-1  g-3" method="post" action="{{route('check',['title' =>$title,'ue'=> $ue,'id' => $id ])}}">
  @csrf
 @foreach($questions as $nq=>$q)
+ 
         <div class="col">
           <div class="card shadow-sm">
-          <div class="card-header"><h5 class="card-title">{{($nq+1).') '.$q->tilte}}</h5></div>
+          <div class="card-header"><h5 class="card-title text-center"> @if($q->img_path) <a href="{{Storage::url($q->img_path)}}" title="click pour zoumer l'image" ><img class=" shadow-sm rounded bd-placeholder-img" height="300px" width="300px" src="{{Storage::url($q->img_path)}}"></a> @else {{($nq+1).') '.$q->tilte}} @endif </h5></div>
             <div class="card-body">
               <p class="card-text">
               <ul style="list-style: none;">

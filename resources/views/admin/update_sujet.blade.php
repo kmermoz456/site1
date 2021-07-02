@@ -1,8 +1,56 @@
+<?php
+
+use App\Models\Proposition;
+use App\Models\Question;
+use App\Models\Sujet;
+
+$onesujet =null;
+$onepropo = null;
+$onequestion = null;
+
+if(!empty($_GET))
+        {
+            if(isset($_GET['idp']))
+            {
+
+                $id = htmlentities($_GET['idp']);
+                $onepropo = Proposition::find($id);
+
+
+            }
+
+
+            if(isset($_GET['idq']))
+            {
+
+                $id = htmlentities($_GET['idq']);
+                $onequestion = Question::find($id);
+
+
+            }
+
+
+            if(isset($_GET['ids']))
+            {
+
+                $id = htmlentities($_GET['ids']);
+                $onesujet = Sujet::find($id);
+
+
+            }
+        }
+
+
+
+
+?>
+
+
 <h3>Mise à jour</h3>
 <div class="container p-3 ">
 
          <!--Sujet-->
-
+                        <livewire:update-sujet/>
          <div>
          <h4>Sujet</h4>
         <form class="form row" method="post" action="{{route('update',['action' => 'update_sujet'])}}">
@@ -10,17 +58,11 @@
 
             <div class="col-md-4 ">
                     <label for="id" class="form-label">Sujet à modifier</label>
-                    <select class="form-select shadow" name="id" id="id" required>
-                        <option value="">choisir...</option>
-                        @foreach($sujets as $sujet)
-                        <option value="{{$sujet->id}}">{{$sujet->title}} ({{$sujet->nivau}}) -> {{$sujet->ue}}</option>
-                       @endforeach
-
-                    </select>
+                   <input type="text" id="id" name="id" value="{{$onesujet ? $onesujet->id :''}}" placeholder="l'identifiant de la question">
                 </div>
 
             <div class="form-group">
-                <label for="title" class=" ml-1 input-label">Titre</label><input class="form-control" id="title" type="text" require name="title"  placeholder="EX: Glucide :les oses">
+                <label for="title" class=" ml-1 input-label">Titre</label><input class="form-control" id="title" type="text" required value="{{$onesujet ? $onesujet->title :''}}" name="title"  placeholder="EX: Glucide :les oses">
             </div>
             
             
@@ -61,59 +103,44 @@
             </div>
 
           <!--Questions-->
+          <livewire:update-question/>
+
         <div class="mt-2">
               
    
                 <h3>Question</h3>
 
-      <form class="form row" method="POST" action="{{route('update',['action'=>'update_question'])}}">
+      <form class="form row" method="POST" enctype="multipart/form-data"   action="{{route('update',['action'=>'update_question'])}}">
             @csrf
                 <!---->
 
             <div class="col-md-4 ">
-                    <label for="id" class="form-label">Question à modifier</label>
-                    <select class="form-select shadow" name="id" id="id" required>
-                        <option value="">choisir...</option>
-                        @foreach($questions as $q)
-                        <option value="{{$q->id}}">{{$q->tilte}} : bonne reponse: {{$q->good_answers}} ({{$q->type}}) -> {{$q->sujet->title}} ({{$q->sujet->ue}})</option>
-                       @endforeach
-
-                    </select>
-            </div>
+                    <label for="id" class="form-label">l'Identifiant de la question à modifier
+                   <input type="text" id="id" name="id" value="{{$onequestion ? $onequestion->id :''}}"  placeholder="l'identifiant de la question"></label>
+                </div>
 
                 <!---->
 
                 <div class="form-group">
-                    <label for="title" class=" ml-1 my-2 input-label">Titre de la question </label><input class="form-control" id="title" type="text" name="title" placeholder="EX: Glucides : les oses">
+                    <label for="title" class=" ml-1 my-2 input-label">Titre de la question </label><input class="form-control" id="title" type="text" name="title" value="{{$onequestion ? $onequestion->tilte :''}}" placeholder="EX: Glucides : les oses">
                 </div>
                 <!---->
               
 
                     <div class="col-md-4 ">
                         <label for="nbre" class="form-label">Nombre de proposition juste:</label>
-                        <select class="form-select" name="good_answers" id="nbre" required>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-
-                        </select>
+                        <input class="form-control" value="{{$onequestion ? $onequestion->good_answers :''}}" name="good_answers" id="nbre" required>
+        
                     </div>
                
                 <!---->
 
                     <div class="col-md-4 ">
 
-                        <label for="sujet" class="form-label">Cette question a pour parent</label>
-                        <select class="form-select" name="sujet_id" id="sujet" required>
-                        @foreach($sujets as $sujet )
-                        <option value="{{$sujet->id}}">{{$sujet->title}} : {{$sujet->ue}} : {{strtoupper($sujet->nivau)}} </option>
-                           @endforeach
-
-                        </select>
+                    <div class="col-md-4 ">
+                    <label for="id" class="form-label">L'identifiant du du parent
+                   <input type="number" class="" id="id" value="{{$onequestion ? $onequestion->sujet_id :''}}" name="sujet_id" placeholder="l'Identifiant de la du parent"></label>
+                </div>
 
                     </div>
                 <!---->
@@ -133,12 +160,12 @@
                     <div class="col-md-4 ">
 
                 <label for="nature" class="form-label"> Nature de la question bonne(1) ou mauvaise (0) reponse (QCM)- (0) si la question est fausse (1) si la question est juste (QCD) </label>
-                <select class="form-select" name="point" id="nature" required>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
+                <input  class="form-control" value="{{$onequestion ? $onequestion->point :''}}" name="point" id="nature" required>
+                </div>
 
-                </select>
 
+                <div  class="my-2">
+                <label for="img">Image de la question  <input type="file" id="img" name="file" > </label>
                 </div>
 
 
@@ -150,45 +177,34 @@
              </form>
         </div>
   <!--Propositions-->
+  <livewire:update-propos/>
+
+
             <div class="mt-2">
             <h3>Propositions</h3>
      <form class="form row" method="POST" action="{{route('update',['action'=>'update_propos'])}}">
             @csrf
             <div class="col-md-4 ">
-                    <label for="id" class="form-label">Proposition à modifier</label>
-                    <select class="form-select  shadow" name="id" id="id" required>
-                        <option value="">choisir...</option>
-                        @foreach($propos as $p)
-                        <option value="{{$p->id}}">{{$p->propos}} : bonne reponse: {{$p->point ? 'oui' : 'non'}} -> {{$p->question->tilte}})</option>
-                       @endforeach
-
-                    </select>
-            </div>
+                    <label for="id" class="form-label">l'Identifiant de la proposition à modifier
+                   <input type="text" id="id" name="id" value="{{$onepropo ? $onepropo->id : ''}}" placeholder="l'identifiant de la propositions"></label>
+                </div>
               
                 <div class="form-group">
-                    <label for="p" class=" ml-1  input-label">Propositions </label><input class="form-control" id="p" type="text" name="propos" placeholder="EX: Glucides : les oses">
+                    <label for="p" class=" ml-1  input-label">Propositions </label><textarea style="height: 200px;" class="form-control" id="p" type="text" value="" name="propos">{{$onepropo ? $onepropo->propos:''}}</textarea>
                 </div>
                 <!---->
               
                     <div class="col-md-5 ">
-                        <label for="nbre" class="form-label">Nombre de point 1 pour bonne reponse 0 pour mauvause reponse:</label>
-                        <select class="form-select" name="point" id="nbre" required>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            
-                        </select>
+                    <label for="nbre" class="form-label">Nombre de point 1 pour bonne reponse 0 pour mauvause reponse:</label>
+                   <input type="number" id="nbre" name="point" value="{{$onepropo ? $onepropo->point : '' }}">
                     </div>
 
                     <div class="col-md-5 ">
 
-                        <label for="q" class="form-label">Cette question a pour parent</label>
-                        <select class="form-select" name="question_id" id="q" required>
-                            <option value="">selectionner la question qui correspond</option>
-                            @foreach($questions as $q)
-                            <option class="" value="{{$q->id}}">{{$q->tilte}} (du sujet {{$q->sujet->tilte}} qui a {{$q->good_answers}} {{$q->good_answsers >0 ? 'reponses justes':'reponse juste'}})</option>
-                            @endforeach
-                        </select>
-
+                    <div class="col-md-4 ">
+                    <label for="id" class="form-label">l'Identifiant du parent
+                   <input type="text" id="id" name="question_id" value ="{{$onepropo ? $onepropo->question_id :''}}" placeholder="l'identifiant du parent"></label>
+                </div>
                     </div>
                   
                                  

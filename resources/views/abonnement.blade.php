@@ -30,7 +30,8 @@ use Illuminate\Support\Facades\Auth;
 </div>
  <div  class="row">
   <h4>Nous contacter si vous n'avez pas de crédit appel</h4>
-    <form class="form" method="post" action="">
+    <form class="form" method="post" action="{{route('message',['idd'=>1,'ide'=>Auth::user()->id,'direction'=>'help'])}}">
+    @csrf
     <div class="form-group">
     <label for="author">Nom</label>
    <input type="text" id="author" class="form-control" name="author" placeholder="votre nom" value="{{Auth::user()->name ?? ''}}" required>

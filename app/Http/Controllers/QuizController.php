@@ -38,6 +38,7 @@ class QuizController extends Controller
         define("TYPE", "QCD");
 
     $questions = Question::where('sujet_id',$id)->get();
+    $note = count($questions);
     
   
     $grilles = $request->except('_token');
@@ -98,7 +99,8 @@ class QuizController extends Controller
         'ue' => $ue,
         'id' => $id,
         'total' => $total,
-        'show' => $show
+        'show' => $show,
+        "note" => $note
     ]);
 
     }

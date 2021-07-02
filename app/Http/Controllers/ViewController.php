@@ -18,7 +18,7 @@ class ViewController extends Controller
     public function home(Request $requet)
     {
 
-       // dd(Storage::url('icon.png'));
+        
        
         $demo = Sujet::find(1);
         $sujets = Sujet::get()->take(3);

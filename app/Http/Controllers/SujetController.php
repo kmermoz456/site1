@@ -7,7 +7,9 @@ use App\Models\Question;
 use App\Models\Sujet;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Colors\RandomColor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SujetController extends Controller
 {
@@ -31,21 +33,39 @@ class SujetController extends Controller
                 "type" =>$request['type']
             ]
         );
-        $status = "Crée avec succès";
+        session()->flash('message','Sujet créer avec succès');
         return redirect(RouteServiceProvider::AD_PAGE,302);
 
     }
 
     public function add_quest(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            
-        ]);
+       
+        $requestimg = $request;
         $request = $request->all();
+        if($requestimg->file('file'))
+        {
+           $filpath =  $requestimg->file->storeAs('images',time().'.'.$requestimg->file('file')->extension(),'public');
         
- 
-        $questions = Question::create(
+            Question::create(
+                [
+                    "img_path"=>$filpath,
+                    "point"=>$requestimg->point,
+                    "good_answers" =>$requestimg->good_answers,
+                    "type" => $requestimg->type,
+                    "sujet_id" => $requestimg->sujet_id
+    
+                 
+                ]
+            );
+        }else{
+        
+            $requestimg->validate([
+                'title' => 'required|string|max:255',
+            
+                
+            ]);
+        Question::create(
             [
                 "tilte"=>$request['title'],
                 "point"=>$request['point'],
@@ -56,7 +76,7 @@ class SujetController extends Controller
              
             ]
         );
-        
+    }
         return redirect(RouteServiceProvider::AD_PAGE,302);
             
     }
@@ -66,7 +86,7 @@ class SujetController extends Controller
     {
 
         $request->validate([
-            'propos' => 'required|string|max:255',
+            'propos' => 'required|string|',
             
         ]);
         $request = $request->except('_token');
@@ -90,11 +110,9 @@ class SujetController extends Controller
     public function update($action,Request $request)
     {
 
-
-        
         if($action === 'update_sujet')
         {
-            dd("jE SUIS LA SUJET");
+         
             $request->validate([
                 'title' => 'required|string|max:255',
                 
@@ -115,7 +133,22 @@ class SujetController extends Controller
         }elseif( $action === 'update_question')
              
         {
-           
+            if($request->file)
+            {
+           $filpath =  $request->file->storeAs('images',time().'.'.$request->file('file')->extension(),'public');
+             
+                
+        $request->validate([
+            'id' => 'required|string|max:255',
+            
+        ]);
+          
+           Question::find($request->id)->update([
+                   
+                    "img_path" => $filpath,
+        
+                ]);
+            }else{
               
         $request->validate([
             'title' => 'required|string|max:255',
@@ -132,10 +165,10 @@ class SujetController extends Controller
 
         ]);
 
-        dd("Question modifier");
+    }
+    return redirect(RouteServiceProvider::UDP_S,302);
         
-        return redirect(RouteServiceProvider::UDP_S,302);
-
+        
     }elseif( $action === 'update_propos')
              
     {
@@ -176,7 +209,7 @@ class SujetController extends Controller
 
             if($action === "question")
             {
-                dd("question");
+               
 
                 Sujet::find($id)->delete();
                 return redirect(RouteServiceProvider::UDP_S,302);
@@ -185,7 +218,7 @@ class SujetController extends Controller
 
             if($action === "propo")
             {
-                dd("propo");
+              
 
                 Sujet::find($id)->delete();
               return redirect(RouteServiceProvider::UDP_S,302);

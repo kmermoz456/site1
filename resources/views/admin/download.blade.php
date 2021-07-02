@@ -9,30 +9,25 @@
     <label for="slider" class="input-label">Telecharger une image</label>
     <input type="file" accept="image/png,image/jpeg" name="slider" id="slider" class="form-file" >
     </div>
-    <button type="submit"class="mx-1 col-1 btn-secondary btn">Envoyer</button>
-    </form>
-    <h3>Images du site</h3>
 
-    <form class="row form" method="post" action="{{route('storage',['action'=>'image'])}}" enctype="multipart/form-data">
-    @csrf
-    <div class="col-auto border p-1">
-    <label for="input-label">Telecharger un document</label>
-    <input type="file" name="image" class="form-file" accept="image/png ,image/jpeg" >
+    <div class="form-group">
+    <label class="input-label" for="title">Titre</label>
+    <input type="text" class="form-control" id="text" name="title">
     </div>
-    <button type="submit"class="mx-1 col-1 btn-secondary btn">Envoyer</button>
-    </form>
-
-    <h3>Video</h3>
-
-
-    <form class="row form" method="post" action="{{route('storage',['action'=>'video'])}}" enctype="multipart/form-data">
-    @csrf
-    <div class="col-auto border p-1">
-    <label for="input-label">Telecharger une video</label>
-    <input type="file" class="form-file" >
+    <div class="form-group">
+    <label class="input-label" for="text">Texte</label>
+    <input type="text" class="form-control" id="text" name="text">
     </div>
-    <button type="submit"class="mx-1 col-1 btn-secondary btn">Envoyer</button>
+    <div class="form-group">
+    <label class="input-label" for="type">type</label>
+    <input type="text" class="form-control" id="text" name="type">
+    </div>
+
+    <button type="submit"class="my-2 col-1 btn-secondary btn">Envoyer</button>
     </form>
+    
+
+    
 
 
 </div>

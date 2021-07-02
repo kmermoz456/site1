@@ -4,7 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePropositionsTable extends Migration
+use function PHPSTORM_META\type;
+
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +15,13 @@ class CreatePropositionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('propositions', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->text('propos');
-            $table->smallInteger('point');
-           // $table->unsignedBigInteger('question_id');
+            $table->string('path');
+            $table->string('title');
+            $table->string('text');
+            $table->string('type');
             $table->timestamps();
-            $table->foreignId('question_id')->constrained();
         });
     }
 
@@ -30,7 +32,6 @@ class CreatePropositionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('propositions');
+        Schema::dropIfExists('images');
     }
 }
-

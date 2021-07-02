@@ -21,6 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->smallInteger('good_answers');
             $table->string('type')->default('QCM');
             $table->mediumText('explication')->nullable();
+            $table->string('img_path')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('sujet_id');
             $table->foreign('sujet_id')->references('id')->on('questions');

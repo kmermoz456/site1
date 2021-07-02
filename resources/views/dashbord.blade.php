@@ -151,7 +151,7 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" value=" <?=Auth::user()->name?>">
+    <input disabled class="form-control bg-dark form-control-dark w-100" type="text" value=" <?=Auth::user()->name?>">
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
         <a class="nav-link" href="/logout">Deconnexion</a>
@@ -167,15 +167,15 @@
         <div class="position-sticky pt-3">
           <ul class="nav flex-column">
             <li class="bg-success nav-item">
-              <a class="nav-link text-white" aria-current="page" href="#">
+              <a class="nav-link text-white" aria-current="page" href="/admin">
               <ion-icon name="speedometer-outline"></ion-icon>
                 Tableau de bord
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{isset($action) && $action === 'add_sujet' ? 'text-success':''}} " href="{{route('user',['action'=>'info-perso'])}}">
+              <a class="nav-link {{isset($action) && $action === 'add_sujet' ? 'text-success':''}} " href="{{route('user',['action'=>'update-user'])}}">
               <ion-icon name="add-circle-outline"></ion-icon>
-                Informations personnelles
+                Modifier mes Informations personnelles
               </a>
             </li>
             <li class="nav-item">
@@ -184,12 +184,6 @@
                 Notifications
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link {{isset($action) && $action === 'add_sujet' ? 'text-success':''}} " href="{{route('user',['action'=>'status'])}}">
-              <ion-icon name="add-circle-outline"></ion-icon>
-                Voir status
-              </a>
-            </li>   
           </ul>
 
          
@@ -210,7 +204,13 @@
        @if(isset($action))
        @if($action === 'notifications')
        @include('messageuser')
-       
+
+       @elseif($action === 'update-user')
+       @include('update-user')
+      @else
+    
+       @endif
+
        @else
        <h2>Informations personnelles</h2>
        
@@ -262,13 +262,13 @@
 
   @endif
 
-    <a href="#" class="btn btn-danger mt-2">Supprimer mon compte</a>  <a href="#" class=" mt-2 btn btn-success">Modifier mon Mon compte </a>
 
     <hr>
      
-  @endif
+  
+    @endif
 
-@endif
+
   </main>
  
     </div>

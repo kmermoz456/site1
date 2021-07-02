@@ -8,6 +8,7 @@ use App\Http\Controllers\SujetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,14 +41,10 @@ Route::post("/demo/{title}-{ue}-{id}",[QuizController::class,"demo"])->name('dem
 Route::get("/admin/abonnement/{action}-{id}",[AdminController::class,'client'])->name('client')->middleware('auth');
 Route::post("/user/message/{idd}-{ide}-{direction}",[MessageController::class,'help'])->name('message')->middleware('auth');
 Route::post('/download/{action}',[DownloadController::class,'storage'])->name('storage')->middleware('auth'); //telechargemnt
+Route::post('/admin/update',[UserController::class,'updateuser'])->name('updateuser')->middleware('auth'); //User update
 
-
-
-
-
-Route::get('/abonnement',function(){
-  return view('abonnement');
-});
+Route::get('/abonnement',[UserController::class,'abonnement'])->name('abonnement')->middleware('auth');
+  
 
 
 Route::post('/livewire',function(){

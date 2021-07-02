@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-    protected $fillable = ["tilte","point","good_answers","type"];
+    protected $fillable = ["tilte","point","good_answers","type", "sujet_id",'img_path'];
    public $timestamps = false;
     public function sujet()
     {

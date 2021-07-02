@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Colors\RandomColor;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +51,8 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'numero'=>$request->numero,
             'city'=>$request->city,
-            'nivau'=> $request->nivau
+            'nivau'=> $request->nivau,
+            'color' => RandomColor::one()
         ]);
 
         event(new Registered($user));

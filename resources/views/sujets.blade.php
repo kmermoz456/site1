@@ -2,6 +2,8 @@
 
 @section("content")
 <div class="container-fluid my-5">
+
+
 <h1> sujet </h1>
 <div class="album py-5 bg-light">
 <div style="font-family: Arial;" class="container">
@@ -38,7 +40,7 @@
 </div>
 </div>
 </div>
-   
+ 
 
 
 @endsection

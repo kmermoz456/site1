@@ -21,6 +21,10 @@ class CreateUsersTable extends Migration
             $table->smallInteger('admin')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('numero')->unique();
+            $table->string('city');
+            $table->string('nivau');
+            $table->string('color')->default('000');
             $table->rememberToken();
             $table->timestamps();
         });

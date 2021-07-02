@@ -151,23 +151,20 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" value=" <?=Auth::user()->name?>">
+    <input disabled class="form-control bg-dark form-control-dark w-100" type="text" value=" <?=Auth::user()->name?>">
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
-        <a class="nav-link" href="#">Sign out</a>
+        <a class="nav-link" href="/logout">Deconnexion</a>
       </li>
     </ul>
   </header>
 
   <div class="container-fluid">
-
-  
-    <div class="row">
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
         <div class="position-sticky pt-3">
           <ul class="nav flex-column">
             <li class="bg-success nav-item">
-              <a class="nav-link text-white" aria-current="page" href="#">
+              <a class="nav-link text-white"  href="/admin">
               <ion-icon name="speedometer-outline"></ion-icon>
                 Tableau de bord
               </a>
@@ -238,8 +235,8 @@
     Telecharger des fichiers
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="{{route('action',['action'=>'slider'])}}">affiche</a></li>
-    <li><a class="dropdown-item" href="{{route('action',['action'=>'image'])}}">images</a></li>
+    <li><a class="dropdown-item" href="{{route('action',['action'=>'download'])}}">affiche</a></li>
+    <li><a class="dropdown-item" href="{{route('action',['action'=>'images'])}}">images</a></li>
     <li><a class="dropdown-item" href="#">pdf</a></li>
     <li><a class="dropdown-item" href="#">video</a></li>
   </ul>
@@ -273,6 +270,10 @@
 
         @elseif($action === "download")
        @include('admin.download')
+
+       @elseif($action === "images")
+       
+       <livewire:image-search/>
        
 
         @elseif($action === "message")
